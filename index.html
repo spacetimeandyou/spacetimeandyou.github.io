@@ -93,8 +93,16 @@
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "972px";
-        canvas.style.height = "918px";
+        var tempW= window.innerWidth;//获取body可见区域高度
+        var tempH =  window.innerHeight;//获取body可见区域高度
+        var scale = 1080/1920;
+        var width = 0;
+        var height = 0;
+        if (tempW/tempH > scale) {height=tempH;width=tempH*scale;}
+        if (tempW/tempH < scale) {height=tempW/scale;width=tempW;}
+
+        canvas.style.width = width+"px";
+        canvas.style.height = height+"px";
       }
 
       loadingBar.style.display = "block";
